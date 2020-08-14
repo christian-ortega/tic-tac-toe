@@ -1,17 +1,10 @@
 class TicTacToe
+	public
+
   def initialize
 		@board = (1..9).to_a
   end
 
-	def update_display
-		puts "The Board:"
-    puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
-    puts '---+---+---'
-    puts " #{@board[3]} | #{@board[4]} | #{@board[5]} "
-    puts '---+---+---'
-    puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
-	end
-	
 	def game
 		update_display
 		until game_over?
@@ -24,9 +17,49 @@ class TicTacToe
 		puts "GAME OVER"
 	end
 
+	private
+
+	def update_display
+		puts "The Board:"
+    puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
+    puts '---+---+---'
+    puts " #{@board[3]} | #{@board[4]} | #{@board[5]} "
+    puts '---+---+---'
+    puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
+	end
+
+	def turn(player_number)
+		symbol = player_symbol(player_number)
+		tile_number = nil
+		loop do
+			puts "Player #{player_number}'s turn"
+			print "Enter tile number where you wish to place #{symbol}: "
+			tile_number = gets.chomp.to_i - 1
+			break if tile_number.between?(0, 8)
+			puts "Invalid Entry! Try again."
+		end
+		@board[tile_number] = symbol
+	end
+
+	def player_symbol(player_number)
+		return "O" if player_number == 1
+		return "X" if player_number == 2
+	end
+
 	def game_over?
 		return true if full_board? || player_won?
 		return false
+	end
+
+	def full_board?
+		@board.each do |e|
+			return false if integer?(e)
+		end
+		return true
+	end
+
+	def integer?(element)
+		element.class == Integer
 	end
 
 	def player_won?
@@ -43,35 +76,6 @@ class TicTacToe
 
 	def tiles_equal?(index_1, index_2, index_3)
 		[@board[index_1], @board[index_2], @board[index_3]].uniq.length == 1
-	end
-
-	def turn(player_number)
-		symbol = player_symbol(player_number)
-		puts "Player #{player_number}'s turn"
-		print "Enter tile number where you wish to place #{symbol}: "
-		# add exception handling
-		tile_number = gets.chomp.to_i - 1
-		@board[tile_number] = symbol
-	end
-
-	def player_symbol(player_number)
-		return "O" if player_number == 1
-		return "X" if player_number == 2
-	end
-
-	def fill_board
-		@board = Array.new(8, "X")
-		@board.push(9)
-	end
-	def full_board?
-		@board.each do |e|
-			return false if integer?(e)
-		end
-		return true
-	end
-
-	def integer?(element)
-		element.class == Integer
 	end
 end
 
