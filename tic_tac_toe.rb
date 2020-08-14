@@ -25,7 +25,8 @@ class TicTacToe
     puts '---+---+---'
     puts " #{@board[3]} | #{@board[4]} | #{@board[5]} "
     puts '---+---+---'
-    puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
+		puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
+		puts ""
 	end
 
 	def turn(player_number)
@@ -33,10 +34,12 @@ class TicTacToe
 		tile_number = nil
 		loop do
 			puts "Player #{player_number}'s turn"
-			print "Enter tile number where you wish to place #{symbol}: "
+			print "Enter tile number where you wish to place [ #{symbol} ]: "
 			tile_number = gets.chomp.to_i - 1
-			break if tile_number.between?(0, 8)
+			puts ""
+			break if tile_number.between?(0, 8) && @board[tile_number] != "X" && @board[tile_number] != "O"
 			puts "Invalid Entry! Try again."
+			puts ""
 		end
 		@board[tile_number] = symbol
 	end
@@ -79,5 +82,5 @@ class TicTacToe
 	end
 end
 
-a = TicTacToe.new
-a.game
+tic_tac_toe = TicTacToe.new
+tic_tac_toe.game
