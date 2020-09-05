@@ -1,7 +1,7 @@
 # tic-tac-toe
 THE ODIN PROJECT: OBJECT ORIENTED PROGRAMMING, TESTING YOUR RUBY CODE
 
-### Tic Tac Toe ([View in repl.it](https://repl.it/@chrisortegax/tic-tac-toe#tic_tac_toe.rb))
+### Tic Tac Toe ([View in repl.it](https://repl.it/@chrisortegax/tic-tac-toe#lib/tic_tac_toe.rb))
 
 This is a command-line interface implementation of the classic game of Tic Tac Toe.
 
