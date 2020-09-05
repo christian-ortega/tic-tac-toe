@@ -17,6 +17,15 @@ class TicTacToe
 		puts "GAME OVER"
 	end
 
+	def game_over?
+		return true if full_board? || player_won?
+		return false
+	end
+
+	def change_board(new_board)
+		@board = new_board[0..8]
+	end
+
 	private
 
 	def update_display
@@ -49,20 +58,15 @@ class TicTacToe
 		return "X" if player_number == 2
 	end
 
-	def game_over?
-		return true if full_board? || player_won?
-		return false
-	end
-
 	def full_board?
 		@board.each do |e|
-			return false if integer?(e)
+			return false unless valid_symbol?(e)
 		end
 		return true
 	end
 
-	def integer?(element)
-		element.class == Integer
+	def valid_symbol?(element)
+		element == "O" || element == "X"
 	end
 
 	def player_won?
