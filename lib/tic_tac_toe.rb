@@ -81,6 +81,3 @@ class TicTacToe
 		[@board[index_1], @board[index_2], @board[index_3]].uniq.length == 1
 	end
 end
-
-tic_tac_toe = TicTacToe.new
-tic_tac_toe.game
